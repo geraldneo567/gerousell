@@ -4,6 +4,7 @@ import {useState, useEffect} from "react";
 import {Image, KeyboardAvoidingView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Button, Input, Text} from "react-native-elements"
 import {auth, db} from "../firebase.js";
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 
 const WelcomeScreen = ({navigation}) => {
     const [email, setEmail] = useState("")
@@ -27,7 +28,7 @@ const WelcomeScreen = ({navigation}) => {
     }
 
     return (
-    <KeyboardAvoidingView style={styles.container}>
+    <KeyboardAwareScrollView contentContainerStyle={styles.container}>
 
         <StatusBar style={"light"} />
 
@@ -39,19 +40,13 @@ const WelcomeScreen = ({navigation}) => {
         </View>
         <Button title={"Login"} buttonStyle={styles.loginButton} onPress={loginHandler}/>
 
-        <View style={styles.forgotPassword}>
-            <Text>Forgot Password? Tap </Text>
-            <TouchableOpacity>
-                <Text style={{textDecorationLine: "underline"}}>here</Text>
-            </TouchableOpacity>
-        </View>
 
         <View style={styles.register}>
             <Text>Don't have an account? Sign up now!</Text>
             <Button title={"Register"} buttonStyle={styles.registerButton} onPress={() => navigation.navigate("Register")}/>
         </View>
 
-    </KeyboardAvoidingView>
+    </KeyboardAwareScrollView>
 )}
 
 const styles = StyleSheet.create({

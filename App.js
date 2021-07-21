@@ -4,12 +4,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import WelcomeScreen from "./screens/WelcomeScreen.js";
 import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet} from "react-native";
 import ProfileScreen from "./screens/ProfileScreen";
 import SellScreen from "./screens/SellScreen";
 import ChatScreen from "./screens/ChatScreen";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ListingScreen from "./screens/ListingScreen";
+import EditScreen from "./screens/EditScreen";
+import ConversationScreen from "./screens/ConversationScreen";
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,16 @@ const App = () => {
             <Stack.Screen
                 name="Listing"
                 component={ListingScreen}
+            />
+            <Stack.Screen
+                name="Edit"
+                component={EditScreen}
+                options={{title: "Edit Information"}}
+            />
+            <Stack.Screen
+                name="Conversation"
+                component={ConversationScreen}
+                options={{title: "Conversation"}}
             />
         </Stack.Navigator>
 

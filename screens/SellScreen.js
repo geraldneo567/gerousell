@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TextInput, KeyboardAvoidingView} from 'react-native'
+import {View, StyleSheet, TextInput} from 'react-native'
 import {auth, db} from "../firebase";
 import {Button, Input} from "react-native-elements";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -12,7 +12,7 @@ const SellScreen = ({navigation}) => {
     const [photoUrl, setPhotoUrl] = useState('')
     const user = auth.currentUser;
     const createListing = async () => {
-        await db.collection('Listings').add({
+        await db.collection('Listings').doc(listingName + "-" + auth.currentUser.displayName).set({
             userName: user.displayName,
             location: location,
             listingName: listingName,
@@ -41,6 +41,7 @@ const SellScreen = ({navigation}) => {
                         style={styles.textArea}
                         placeholder={"Description along with additional details"}
                         onChangeText={text => setDescription(text)}
+                        multiline={true}
                     />
                 </View>
                 <Input
